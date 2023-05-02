@@ -1,6 +1,7 @@
 import pygame
 from pathlib import Path
 
+from code.player import Player
 
 pygame.init()
 screenHigh = 760
@@ -34,3 +35,14 @@ image_path = parent_path / 'res'
 print(image_path)
 icon_path = image_path / 'airplaneicon.png'
 print(icon_path)
+
+fps = 120
+movingScale = 600 / fps
+player = Player(playground=playground, sensitivity=movingScale)
+
+while running:
+    screen.blit(background, (0, 0))
+    player.update()
+    screen.blit(player.image, player.xy)
+    pygame.display.update()
+    dt = clock.tick(fps)
