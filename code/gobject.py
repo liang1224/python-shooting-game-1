@@ -72,19 +72,19 @@ class GameObject:
 
 #
     def update(self):
-        self.x += self._changeX
-        self.y += self._changeY
-        if self.x > self._objectBound[1]:
-            self.x = self._objectBound[1]
-        if self.x < self._objectBound[0]:
-            self.x = self._objectBound[0]
-        if self.y > self._objectBound[3]:
-            self.y = self._objectBound[3]
-        if self.y < self._objectBound[2]:
-            self.y = self._objectBound[2]
+        self._x += self._changeX
+        self._y += self._changeY
+        if self._x > self._objectBound[1]:
+            self._x = self._objectBound[1]
+        if self._x < self._objectBound[0]:
+            self._x = self._objectBound[0]
+        if self._y > self._objectBound[3]:
+            self._y = self._objectBound[3]
+        if self._y < self._objectBound[2]:
+            self._y = self._objectBound[2]
 
     def _collided_(self, it):
-        distance = math.hypot(self._center[0] - it.center[0], self.center[1] - it.center[1])
+        distance = math.hypot(self._center[0] - it.center[0], self._center[1] - it.center[1])
         if distance < self._radius + it.radius:
             return True
         else:
