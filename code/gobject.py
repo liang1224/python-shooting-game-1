@@ -30,6 +30,27 @@ class GameObject:
     def x(self, value):
         self._x = value
 
+    @property
+    def xy(self):
+        return [self._x, self._y]
+
+    @xy.setter
+    def xy(self, xy):
+        try:
+            self._x, self._y = xy
+            if self._x > self._objectBound[1]:
+                self._x = self._objectBound[1]
+            if self._x < self._objectBound[0]:
+                self._x = self._objectBound[0]
+            if self._y > self._objectBound[3]:
+                self._y = self._objectBound[3]
+            if self._y < self._objectBound[2]:
+                self._y = self._objectBound[2]
+        except ValueError:
+            raise ValueError("Pass an iterable with two items")
+        else:
+            pass
+
 #
     def to_the_left(self):
         self._changeX = -self._moveScale
