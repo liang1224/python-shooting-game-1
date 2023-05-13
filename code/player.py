@@ -1,7 +1,5 @@
 from pathlib import Path
-from typing import Union
 import pygame
-from pygame.surface import Surface, SurfaceType
 from gobject import GameObject
 import math
 
@@ -39,3 +37,7 @@ class Player(GameObject):
                 m.hp = -1
                 m.collided = True
                 m.available = False
+
+    @property
+    def image(self):
+        return self._image
