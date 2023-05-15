@@ -102,7 +102,6 @@ while running:
             if event.key == pygame.K_SPACE:
                 pygame.time.set_timer(launchMissile, 0)
 
-
     screen.blit(background, (0, 0))
 
     Missiles = [item for item in Missiles if item.available]
