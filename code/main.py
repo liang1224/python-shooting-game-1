@@ -43,11 +43,22 @@ keyCountX = 0
 keyCountY = 0
 Missiles = []
 
+#
+launchMissile = pygame.USEREVENT + 1
+
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+        #
+        if event.type == launchMissile:
+            m_x = player.xy[0] + 20
+            m_y = player.xy[1]
+            Missiles.append(MyMissile(xy=(m_x, m_y), playground=playground, sensitivity=movingScale))
+            m_x = player.xy[0] + 80
+            Missiles.append(MyMissile(xy=(m_x, m_y), playground=playground, sensitivity=movingScale))
 
         #
         if event.type == pygame.KEYDOWN:
@@ -71,6 +82,8 @@ while running:
                 m_x = player.x + 80
                 Missiles.append(MyMissile(playground, (m_x, m_y), movingScale))
 
+                pygame.time.set_timer(launchMissile, 400)
+
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:
                 if keyCountX == 1:
@@ -84,6 +97,11 @@ while running:
                     player.stop_y()
                 else:
                     keyCountY -= 1
+
+            #
+            if event.key == pygame.K_SPACE:
+                pygame.time.set_timer(launchMissile, 0)
+
 
     screen.blit(background, (0, 0))
 
