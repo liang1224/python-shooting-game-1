@@ -1,7 +1,5 @@
 from pathlib import Path
-from typing import Union
 import pygame
-from pygame.surface import Surface, SurfaceType
 from gobject import GameObject
 import math
 
